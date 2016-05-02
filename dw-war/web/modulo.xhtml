@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/template/template.xhtml">
+
+            <ui:define name="title">
+                <title>M&oacute;dulo</title>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form prependId="false">
+                    <h2>M&oacute;dulos</h2>
+                    <p:messages id="msgs" showDetail="true" />
+                    <p:commandButton value="Agregar M&oacute;dulo" icon="ui-icon-plusthick" 
+                                     onclick="PF('itemDialog').show()" process="@this"
+                                     actionListener="#{moduloBean.prepareNewItem}" 
+                                     update="displayNew" >                        
+                    </p:commandButton>
+
+                    <p:dataTable id="table" var="item" value="#{moduloBean.items}" 
+                                 editable="true" emptyMessage="No se encontraron registros">
+                        <p:ajax event="rowEdit" listener="#{moduloBean.onRowEdit}"  />
+
+                        <p:column headerText="Nombre">
+                            <p:cellEditor >
+                                <f:facet name="output">
+                                    <h:outputText value="#{item.nombre}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.nombre}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                       
+                        <p:column style="width:15px">  
+                            <p:rowEditor />  
+                        </p:column>
+                        <p:column style="width:30px">  
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  
+                                             oncomplete="PF('confirmDialog').show()" process="@this">
+                                <f:setPropertyActionListener value="#{item}" target="#{moduloBean.currentItem}" />  
+                            </p:commandButton>  
+                        </p:column>
+                        <f:facet name="footer">  
+
+                        </f:facet>
+                    </p:dataTable>
+
+                    <!-- Dialog for creation -->
+                    <p:dialog  header="Nuevo M&oacute;dulo" widgetVar="itemDialog" resizable="false"  
+                               width="300" showEffect="clip" hideEffect="fold">  
+
+
+                        <h:panelGrid id="displayNew" columns="2" cellpadding="4">  
+
+                            <h:outputLabel value="Nombre:" />  
+                            <h:inputText value="#{moduloBean.currentItem.nombre}" />  
+                         
+                            <f:facet name="footer">  
+                                <p:commandButton id="createButton" value="Crear" update="table,msgs"   
+                                                 actionListener="#{moduloBean.createItem}" process="displayNew"
+                                                 oncomplete="PF('itemDialog').hide()"/>  
+                            </f:facet> 
+                        </h:panelGrid>                        
+
+                    </p:dialog>
+
+                    <!-- Dialog for confirmation on delete -->
+                    <p:confirmDialog message="¿Desea eliminar el registro seleccionado?"
+                                     header="Eliminar M&oacute;dulo" severity="alert" hideEffect="explode"
+                                     widgetVar="confirmDialog">
+                        <p:commandButton value="Yes" action="#{moduloBean.deleteItem()}" 
+                                         update="table,msgs" oncomplete="PF('confirmDialog').hide()" process="@this" />
+                        <p:commandButton value="No" oncomplete="PF('confirmDialog').hide()" process="@this" />
+                    </p:confirmDialog>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+

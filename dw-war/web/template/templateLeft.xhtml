@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <h:outputStylesheet library="css" name="layout.css"/>
+        <ui:insert name="title"><title>Template Title</title></ui:insert>
+    </h:head>
+    <h:body>
+        <div id="container" class="container">
+            <div id="top" class="top">
+                <div id="logo" class="logo">
+                    <ui:insert name="logo">
+                        <h:graphicImage library="images" name="logo.png"/>
+                    </ui:insert>
+                </div>
+                <div id="header" class="header">
+                    <ui:insert name="header">
+                        <h1>Sports Centre System</h1>                        
+                    </ui:insert>
+                </div>           
+            </div>
+            <div id="menu" class="menu">
+                <ui:include src="menu.xhtml"/>
+            </div>
+
+            <div id="left" class="left">
+                <ui:insert name="left">Left</ui:insert>
+            </div>
+            
+            <div id="left_content" class="left_content">
+                <ui:insert name="left_content"> Left Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>
+

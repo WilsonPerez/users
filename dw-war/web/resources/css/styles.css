@@ -1,0 +1,64 @@
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: "Lucida Bright", Verdana, Georgia, "Times New Roman", serif;
+    color: #000000;  
+    margin: 10px;
+}
+
+/*Text Headers style*/
+h1 {    
+    font-size:  24px;
+    font-weight: bold; 
+}
+
+h2 {    
+    font-size:  20px;
+    font-weight: bold; 
+}
+
+h3 {    
+    font-size:  16px;
+    font-weight: bold; 
+}
+
+h4 {    
+    font-size:  14px;
+    font-weight: bold; 
+}
+
+/*Links style*/
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+/*Primefaces components styles*/
+/*.ui-menuitem-text .ui-text{
+    color: #000000;
+}
+
+.ui-state-hover{
+    background-color: #D1D88A !important;
+}
+
+.ui-button:hover{
+    border: solid #1F60B0 thin !important;
+}
+
+.ui-password:hover, .ui-inputmask:hover {
+    background-color: white !important;
+}
+
+.classEvent .fc-event-skin {
+    background: red;
+}*/
+
+

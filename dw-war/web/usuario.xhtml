@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/template/template.xhtml">
+
+            <ui:define name="title">
+                <title>Usuario</title>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form prependId="false">
+                    <h2>Usuario</h2>
+                    <p:messages id="msgs" showDetail="true" />
+                    <p:commandButton id="cmbNew" value="Agregar Usuario" icon="ui-icon-plusthick" 
+                                     onclick="PF('itemDialog').show()" process="@this"
+                                     actionListener="#{usuarioBean.prepareNewItem}" 
+                                     update="displayNew" disabled="#{usuarioBean.getDisabled('cmbNew')}">                        
+                    </p:commandButton>
+
+                    <p:dataTable id="table" var="item" value="#{usuarioBean.items}" 
+                                 editable="true" emptyMessage="No se encontraron registros">
+                        <p:ajax event="rowEdit" listener="#{usuarioBean.onRowEdit}"  />
+                        
+                        <p:column headerText="Username">
+                            <p:cellEditor >
+                                <f:facet name="output">
+                                    <h:outputText value="#{item.username}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.username}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                        
+                        <p:column headerText="Nombre">
+                            <p:cellEditor >
+                                <f:facet name="output">
+                                    <h:outputText value="#{item.nombres}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.nombres}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                        
+                        <p:column headerText="Apellido">
+                            <p:cellEditor >
+                                <f:facet name="output">
+                                    <h:outputText value="#{item.apellidos}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.apellidos}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                       
+                        <p:column headerText="Email">
+                            <p:cellEditor >
+                                <f:facet name="output">
+                                    <h:outputText value="#{item.email}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.email}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                        
+                        <p:column headerText="Estado">
+                            <p:cellEditor >
+                                <f:facet name="output" >
+                                    <h:outputText value="#{item.estado}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{item.estado}" />
+                                </f:facet>
+                            </p:cellEditor>                              
+                        </p:column>
+                        
+                        <p:column style="width:15px">  
+                            <p:rowEditor />  
+                        </p:column>
+                        <p:column style="width:30px">  
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  
+                                             oncomplete="PF('confirmDialog').show()" process="@this" disabled="#{usuarioBean.getDisabled('deleteButton')}">
+                                <f:setPropertyActionListener value="#{item}" target="#{usuarioBean.currentItem}" />  
+                            </p:commandButton>  
+                        </p:column>
+                        <f:facet name="footer">  
+
+                        </f:facet>
+                    </p:dataTable>
+
+                    <!-- Dialog for creation -->
+                    <p:dialog  header="Nuevo Usuario" widgetVar="itemDialog" resizable="false"  
+                               width="300" showEffect="clip" hideEffect="fold">  
+
+
+                        <h:panelGrid id="displayNew" columns="2" cellpadding="4">  
+                            
+                            <h:outputLabel value="Username:" />  
+                            <h:inputText value="#{usuarioBean.currentItem.username}" /> 
+                            
+                            <h:outputLabel value="Nombre:" />  
+                            <h:inputText value="#{usuarioBean.currentItem.nombres}" /> 
+                            
+                            <h:outputLabel value="Apellido:" />  
+                            <h:inputText value="#{usuarioBean.currentItem.apellidos}" /> 
+                            
+                            <h:outputLabel value="Email:" />  
+                            <h:inputText value="#{usuarioBean.currentItem.email}" /> 
+                            
+                            <h:outputLabel value="Password:" />  
+                            <p:password value="#{usuarioBean.currentItem.password}" feedback="true" />
+                            
+                         
+                            <f:facet name="footer">  
+                                <p:commandButton id="createButton" value="Crear" update="table,msgs"   
+                                                 actionListener="#{usuarioBean.createItem}" process="displayNew"
+                                                 oncomplete="PF('itemDialog').hide()"/>  
+                            </f:facet> 
+                        </h:panelGrid>                        
+
+                    </p:dialog>
+
+                    <!-- Dialog for confirmation on delete -->
+                    <p:confirmDialog message="¿Desea eliminar el registro seleccionado?"
+                                     header="Eliminar Usuario" severity="alert" hideEffect="explode"
+                                     widgetVar="confirmDialog">
+                        <p:commandButton value="Yes" action="#{usuarioBean.deleteItem()}" 
+                                         update="table,msgs" oncomplete="PF('confirmDialog').hide()" process="@this" />
+                        <p:commandButton value="No" oncomplete="PF('confirmDialog').hide()" process="@this" />
+                    </p:confirmDialog>
+
+                    <p:commandButton id="test1" value="test1" icon="ui-icon-plusthick" 
+                                     onclick="PF('itemDialog').show()" process="@this"
+                                     actionListener="#{usuarioBean.prepareNewItem}" 
+                                     update="displayNew" disabled="#{usuarioBean.getDisabled('test1')}">                        
+                    </p:commandButton>
+
+                    <p:commandButton id="test2" value="test2" icon="ui-icon-plusthick" 
+                                     onclick="PF('itemDialog').show()" process="@this"
+                                     actionListener="#{usuarioBean.prepareNewItem}" 
+                                     update="displayNew" disabled="#{usuarioBean.getDisabled('test2')}">                        
+                    </p:commandButton>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
+
+

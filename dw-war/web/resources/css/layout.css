@@ -1,0 +1,108 @@
+/*Page Container*/
+#container{	
+    width:960px;	
+    margin:auto;	
+    color:black;
+    background-color:#FFFFFF;
+}
+
+/*Top section container*/
+#top {
+    border:thin solid #1F60B0;    
+    color:white;
+    text-align: center;
+    height:110px;
+    width:960px;
+    padding:0px 0px 0px 0px;
+}
+
+/*Top: Logo section*/
+#logo {
+    float:left;
+    height:110px;
+    width:240px;    
+    padding:0px 0px 0px 0px;
+    background-color:#779955;
+}
+
+/*Top: Header section*/
+#header {
+    float:left;
+    height:110px;
+    width:960px;    
+    padding:0px 0px 0px 0px;
+    background-color:#1F60B0;
+    line-height: 60px;
+}
+
+/*Menu section container*/
+#menu {
+    border:thin solid #58ACFA; 
+    background-color: #C8D9E5; 
+    text-align: center;
+    height:55px;
+    width:960px;
+    padding:10px 0px 0px 0px;    
+}
+
+/*Left section container*/
+#left {
+    float:left;    
+    border-right: thin solid #668822;    
+    background-color: #BBCC99;            
+    width:190px;
+    padding:5px 0px 5px 10px; 
+    min-height: 500px;
+}
+
+/*Classes for content position*/
+.center_content {    
+    background-color: #EFEFEF;
+    padding: 30px;
+    min-height: 500px;
+}
+
+.left_content {
+    background-color: #EFEFEF;
+    padding: 5px 25px 5px 25px;
+    margin-left: 200px;
+    min-height: 500px;
+}
+
+
+/*Class for username text*/
+.username_class{
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.login {
+    width:250px;
+    margin:auto;
+}
+
+.group_centered{
+    display:block; 
+    text-align:center;
+}
+
+/*
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}*/
+
+/*#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}*/
+
+
