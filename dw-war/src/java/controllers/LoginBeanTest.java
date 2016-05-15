@@ -67,6 +67,12 @@ public class LoginBeanTest implements Serializable {
         }
     }
     
+    public String logoutProject() {
+        this.password="";
+        this.uname="";
+        return "faces/login.xhtml";
+    }
+    
     /**
      * Valida el login de usuario
      * @param name      //Name user

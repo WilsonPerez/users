@@ -20,16 +20,18 @@
                         <p:menuitem value="Cubos" action="#{cuboBean.prepareList}" />  
                         <p:menuitem value="Tablas" action="#{classTypeBean.prepareList}" />  
                         <p:menuitem value="Tablas por Cubo" action="#{classTypeBean.prepareList}" />  
-                        <p:menuitem value="Campos" action="#{classTypeBean.prepareList}" />                         
+                        <p:menuitem value="Campos" action="#{classTypeBean.prepareList}" />
+                        <p:menuitem value="Logout" action="#{usuarioBean.logoutProject}" />
                         
                     </p:submenu> 
                     
-
+                    
                     <f:facet name="options">  
                         <h:outputText class="username_class" value="Usuario"/>
-                        <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+                        <p:commandButton  actionListener="#{usuarioBean.logoutProject}" type="button" value="Logout" icon="ui-icon-extlink" />  
                     </f:facet>  
-                </p:menubar>
+                </p:menubar> 
+
             </h:form>
         </ui:composition>
     </body>

@@ -61,7 +61,7 @@ public class UsuarioBean implements Serializable {
     
     @PostConstruct
     public void init(){
-                HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String url = request.getRequestURL().toString();
         
         List<ComponenteGrafico> listComponents=componenteGraficoSession.obtainAll();
@@ -92,9 +92,7 @@ public class UsuarioBean implements Serializable {
             this.getClass().getDeclaredFields();
             System.out.println(listComponents.get(i).getIdInterfaz().getNombre());
             System.out.println(listComponents.get(i).getRolePermisoCollection());
-        }
-        
-        
+        }        
     }
     public boolean getDisabled(String nameElement){
         boolean ban=true;
@@ -104,39 +102,16 @@ public class UsuarioBean implements Serializable {
         }
         return ban;
     }
-//    public void setFalseComponent(List<String> listComponentesGraf,List<String> listComponentesGrafPermiso){
-//        for(int i=0; i<listComponentesGraf.size(); i++){
-//            for(int j=0; j<listComponentesGrafPermiso.size(); j++){
-//                if()
-//            }
-//        }
-//        
-//    }
     
-   /* public String login()
+    public String logoutProject()
     {
-        if(usuario.equals("KAAF") && contrasenia.equals("030191"))
-        {
-            httpServletRequest.getSession().setAttribute("sessionUsuario", usuario);
-            facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
-            faceContext.addMessage(null, facesMessage);
-            return "acceso";
-        }
-        else
-        {
-            facesMessage=new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
-            faceContext.addMessage(null, facesMessage);
-            return "index";
-        }
-    }*/
-    
-  /*  public String cerrarSession()
-    {
-        httpServletRequest.getSession().removeAttribute("sessionUsuario");
-        facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Session cerrada correctamente", null);
-        faceContext.addMessage(null, facesMessage);
-        return "index";
-    }*/
+        //usuarioSession.getNextIdCampo()
+        //userRols=LoginBeanTest.getInstance().getUserRols();
+        LoginBeanTest.getInstance().setUname("");
+        LoginBeanTest.getInstance().setPassword("");
+        userRols.clear();
+        return "faces/login.xhtml";
+    }
     
     //<editor-fold defaultstate="collapsed" desc="GET - SET methods">
     public List<Usuario>getItems(){
